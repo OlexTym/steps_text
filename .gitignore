@@ -1,0 +1,6 @@
+*.txt
+*.xlsx
+.vscode/
+
+!requirement.txt
+!README.MD
