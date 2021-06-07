@@ -34,18 +34,35 @@ for line in clear_line_list:
     if rgx_number.search(line) or rgx_const.search(line):
         steps_list.append(line)
 
-table = Workbook()
-sheet = table.active
 
-for i, line in enumerate(steps_list):
+def main():
+    """
+    Main function
+    """
+    table_name = "auto_texts.xlsx"
+    save_texts_in_table(table_name, steps_list)
 
-    try:
-        sheet['A' + str(i+1)] = int(step_number(line))
-    except ValueError:
-        sheet['A' + str(i+1)] = step_number(line)
-       
-    sheet['B' + str(i+1)] = step_comment(line)
 
-table.save("auto_texts.xlsx")
+def save_texts_in_table(table_name, steps_list):
+    """
+    Function to write steps number and steps comment into xscel table.
 
-table.close()
+    :param table_name: xscel table name as string
+    :param steps_list: list steps lines with comments
+    """
+    table = Workbook()
+    sheet = table.active
+
+    for i, line in enumerate(steps_list):
+        try:
+            sheet['A' + str(i+1)] = int(step_number(line))
+        except ValueError:
+            sheet['A' + str(i+1)] = step_number(line)
+        
+        sheet['B' + str(i+1)] = step_comment(line)
+
+    table.save(table_name)
+    table.close()
+
+
+main()
