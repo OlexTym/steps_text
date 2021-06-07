@@ -43,6 +43,7 @@ for i, line in enumerate(steps_list):
         sheet['A' + str(i+1)] = int(step_number(line))
     except ValueError:
         sheet['A' + str(i+1)] = step_number(line)
+       
     sheet['B' + str(i+1)] = step_comment(line)
 
 table.save("auto_texts.xlsx")
